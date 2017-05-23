@@ -4,4 +4,4 @@ from invoicesapp.models import Invoice
 class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
-        fields = ('name', 'description', 'total', 'paid', 'amountdue', 'billingaddress')
+        fields = ('id','name', 'description', 'total', 'paid', 'amountdue', 'billingaddress')
