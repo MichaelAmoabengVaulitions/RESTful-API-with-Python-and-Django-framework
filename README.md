@@ -1,2 +1,2 @@
 # RESTful-API-with-Python-and-Django-framework
- This is an invoicing API, with endpoints for creating, deleting and viewing  invoices. This API provides functionality for most Front-End frameworks and data for different types of applications. The RESTful API was built in a virtual environment for easy deployment. 
+ This is a RESTful API for bicyle parking invoices with endpoints for creating, updating, deleting and viewing  invoices. This API provides functionality for most Front-End frameworks and for different types of applications and databases. The RESTful API was built for bike-sharing companies and government stakeholders as part of the project "<i>Improving Urban Cycling with Social Sensing in Tallinn , Estonia</i>"
