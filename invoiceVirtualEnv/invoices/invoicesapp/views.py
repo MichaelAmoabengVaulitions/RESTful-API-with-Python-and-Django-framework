@@ -24,8 +24,8 @@ def invoice_list(request):
 
 
 #Get a single invoice details
-#Modifying this function to handle a put and request
-@api_view(['GET', 'PUT', ''])
+#Modifying this function to handle a put and delete request
+@api_view(['GET', 'PUT', 'DELETE'])
 def invoice_detail(request, pk):
     try:
         invoice = Invoice.objects.get(pk=pk)
@@ -42,3 +42,8 @@ def invoice_detail(request, pk):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status = status.HTTP_404_BAD_REQUEST)
+
+    #Handling a delete request
+    elif request.method == 'DELETE':
+        invoice.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
