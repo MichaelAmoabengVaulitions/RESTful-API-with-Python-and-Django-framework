@@ -5,7 +5,7 @@ from invoicesapp.models import Invoice
 from invoicesapp.serializers import InvoiceSerializer
 
 #Use the decorator to specify which methods the invoice_list function is going to handle
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST',])
 #Function to return a list of invoices
 def invoice_list(request):
     if request.method == 'GET':
@@ -24,12 +24,21 @@ def invoice_list(request):
 
 
 #Get a single invoice details
-@api_view(['GET'])
+#Modifying this function to handle a put and request
+@api_view(['GET', 'PUT', ''])
 def invoice_detail(request, pk):
     try:
         invoice = Invoice.objects.get(pk=pk)
     except InvoiceDoesNotExist:
         return Response(status = status.HTTP_404_NOT_FOUND)
 
-    serializer = InvoiceSerializer(invoice)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        serializer = InvoiceSerializer(invoice)
+        return Response(serializer.data)
+    #Handling a put request
+    elif request.method == 'PUT':
+        serializer = InvoiceSerializer(invoice, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status = status.HTTP_404_BAD_REQUEST)
